@@ -1,0 +1,10 @@
+spring:
+  profiles:
+    active: dev
+
+# 腾讯云COS
+cos:
+  secretId: AKIDiJrpcGV4GG4j7KwJo8HGE4iARmxxCRlu
+  secretKey: 62veBXjeaXM6f3FQjrobFi075oMiv0ta
+  bucketName: iceblue-1257085658
+  domain: https://iceblue-1257085658.cos.ap-guangzhou.myqcloud.com/
