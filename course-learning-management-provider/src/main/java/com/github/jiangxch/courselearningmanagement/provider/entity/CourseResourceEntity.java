@@ -21,7 +21,7 @@ public class CourseResourceEntity extends BaseAliasEntity {
     private ObjectId id;
     private String resourceName;
     /**
-     * {@link com.github.jiangxch.courselearningmanagement.provider.entity.enums.ResourceTypeEnum}
+     * {@link com.github.jiangxch.courselearningmanagement.providerapi.enums.ResourceTypeEnum}
      */
     private Integer resourceType;
     // 资源所属学校名称

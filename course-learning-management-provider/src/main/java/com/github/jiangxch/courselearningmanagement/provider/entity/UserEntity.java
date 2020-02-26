@@ -21,7 +21,7 @@ public class UserEntity extends BaseAliasEntity {
     private String username;
     private String password;
     /** 角色类型
-     * {@link com.github.jiangxch.courselearningmanagement.provider.entity.enums.UserRoleTypeEnum}
+     * {@link com.github.jiangxch.courselearningmanagement.providerapi.enums.UserRoleTypeEnum}
      */
     private Integer roleType;
 }

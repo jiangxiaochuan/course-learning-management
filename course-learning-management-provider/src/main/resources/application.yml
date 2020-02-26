@@ -1,0 +1,8 @@
+spring:
+  profiles:
+    active: dev
+
+# 微信小程序配置
+wechat:
+  appId: AKIDiJrpcGV4GG4j7KwJo8HGE4iARmxxCRlu
+  secret: aaaaa

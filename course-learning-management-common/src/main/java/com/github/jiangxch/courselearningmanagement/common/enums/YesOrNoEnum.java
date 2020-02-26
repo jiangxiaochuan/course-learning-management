@@ -1,4 +1,4 @@
-package com.github.jiangxch.courselearningmanagement.provider.entity.enums.common;
+package com.github.jiangxch.courselearningmanagement.common.enums;
 
 /**
  * @author: sanjin

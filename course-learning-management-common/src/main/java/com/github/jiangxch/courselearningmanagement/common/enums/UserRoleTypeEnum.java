@@ -1,4 +1,6 @@
-package com.github.jiangxch.courselearningmanagement.provider.entity.enums;
+package com.github.jiangxch.courselearningmanagement.common.enums;
+
+import lombok.Getter;
 
 /**
  * @author: sanjin
@@ -10,8 +12,10 @@ public enum UserRoleTypeEnum {
     USER(3, "普通用户")
     ;
 
-    public Integer type;
-    public String msg;
+    @Getter
+    private Integer type;
+    @Getter
+    private String msg;
 
     UserRoleTypeEnum(Integer type, String msg) {
         this.type = type;

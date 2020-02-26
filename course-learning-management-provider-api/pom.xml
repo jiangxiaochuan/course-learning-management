@@ -13,6 +13,11 @@
 
     <dependencies>
         <dependency>
+            <artifactId>course-learning-management-common</artifactId>
+            <groupId>com.github.jiangxch.courselearningmanagement</groupId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <scope>provided</scope>

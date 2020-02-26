@@ -25,7 +25,7 @@ public class CourseEntity extends BaseAliasEntity {
     private String courseName;
     /**
      * 是否是该专业必修课程
-     * @see com.github.jiangxch.courselearningmanagement.provider.entity.enums.common.YesOrNoEnum
+     * @see com.github.jiangxch.courselearningmanagement.common.enums.common.YesOrNoEnum
      */
     private Integer isObligatory;
 }
