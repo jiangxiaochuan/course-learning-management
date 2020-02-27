@@ -1,5 +1,8 @@
 package com.github.jiangxch.courselearningmanagement.test.provider.dao;
 
+import com.github.jiangxch.courselearningmanagement.common.utils.DateUtil;
+import com.github.jiangxch.courselearningmanagement.provider.dao.UserEntityDao;
+import com.github.jiangxch.courselearningmanagement.provider.entity.UserEntity;
 import com.github.jiangxch.courselearningmanagement.test.provider.dao.entity.PersonEntity;
 import com.github.jiangxch.courselearningmanagement.test.provider.BaseTest;
 import org.junit.Assert;
@@ -20,6 +23,8 @@ import java.util.Optional;
 public class MorphiaTest extends BaseTest {
     @Autowired(required = false)
     private Datastore datastore;
+    @Autowired
+    private UserEntityDao userEntityDao;
 
     @Test
     public void testCURD() {
@@ -27,6 +32,7 @@ public class MorphiaTest extends BaseTest {
         testQuery();
         testUpdate();
         testDelete();
+
 
     }
 
@@ -94,8 +100,22 @@ public class MorphiaTest extends BaseTest {
     }
 
 
-
-
-
+    @Test
+    public void insertOne() {
+        UserEntity user = userEntityDao.findOne("id", "1");
+        if (user == null) {
+            UserEntity userEntity = new UserEntity();
+            userEntity.setId("1");
+            userEntity.setOpenId("xxxxx");
+            userEntity.setNickname("三斤");
+            userEntity.setProfile("https://wwww.baidu,com/1.jpg");
+            userEntity.setUsername("admin");
+            userEntity.setPassword("admin");
+            userEntity.setRoleType(1);
+            userEntity.setCreateTime(DateUtil.getUnix());
+            userEntity.setUpdateTime(DateUtil.getUnix());
+            userEntityDao.save(userEntity);
+        }
+    }
 
 }

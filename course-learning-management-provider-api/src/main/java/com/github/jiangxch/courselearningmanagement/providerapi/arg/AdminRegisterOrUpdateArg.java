@@ -6,10 +6,10 @@ import java.io.Serializable;
 
 /**
  * @author: sanjin
- * @date: 2020/2/27 下午1:28
+ * @date: 2020/2/27 下午3:40
  */
 @Data
-public class AdminRegisterArg implements Serializable {
+public class AdminRegisterOrUpdateArg implements Serializable {
     private String username;
     private String password;
 }

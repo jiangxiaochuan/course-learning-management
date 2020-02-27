@@ -9,13 +9,17 @@ import com.github.jiangxch.courselearningmanagement.common.utils.JwtUtil;
 import com.github.jiangxch.courselearningmanagement.common.utils.OkHttpUtil;
 import com.github.jiangxch.courselearningmanagement.provider.dao.UserEntityDao;
 import com.github.jiangxch.courselearningmanagement.provider.entity.UserEntity;
+import com.github.jiangxch.courselearningmanagement.providerapi.arg.AdminRegisterOrUpdateArg;
+import com.github.jiangxch.courselearningmanagement.providerapi.arg.WebLoginArg;
 import com.github.jiangxch.courselearningmanagement.providerapi.arg.WxLoginArg;
 import com.github.jiangxch.courselearningmanagement.providerapi.result.UserInfoResult;
 import com.github.jiangxch.courselearningmanagement.providerapi.service.UserService;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+
 
 /**
  * @author: sanjin
@@ -62,19 +66,43 @@ public class UserServiceImpl implements UserService {
                 return Result.newError("rawData 错误,用户信息不能为空");
             }
             userEntity = userEntityDao.createWxUserEntity(authCode2Session.getOpenid(), wxUserInfo);
-
         }
         UserInfoResult result = new UserInfoResult();
-        BeanUtils.copyProperties(userEntity,result);
+        BeanUtils.copyProperties(userEntity, result);
         return Result.newSuccess(result);
     }
 
     @Override
     public Result<String> generateToken(UserInfoResult data) {
         AuthInfo authInfo = new AuthInfo();
-        authInfo.setUserId(data.getId().toString());
+        authInfo.setUserId(data.getId());
         authInfo.setRoleType(data.getRoleType());
         String token = JwtUtil.generateToken(authInfo);
         return Result.newSuccess(token);
+    }
+
+    @Override
+    public Result<UserInfoResult> adminLogin(WebLoginArg arg) {
+        UserEntity user = userEntityDao.getByUsernamePassword(arg.getUsername(), arg.getPassword());
+        UserInfoResult result = new UserInfoResult();
+        BeanUtils.copyProperties(user, result);
+        return Result.newSuccess(result);
+    }
+
+    @Override
+    public Result<Void> adminRegisterOrUpdateArg(AdminRegisterOrUpdateArg arg, String userId) {
+        UserEntity user = userEntityDao.findOne("id", userId);
+        user.setUsername(arg.getUsername());
+        user.setPassword(arg.getPassword());
+        userEntityDao.save(user);
+        return Result.newSuccess();
+    }
+
+    @Override
+    public Result<UserInfoResult> getUserResultById(String userId) {
+        UserEntity user = userEntityDao.findOne("id", userId);
+        UserInfoResult result = new UserInfoResult();
+        BeanUtils.copyProperties(user, result);
+        return Result.newSuccess(result);
     }
 }

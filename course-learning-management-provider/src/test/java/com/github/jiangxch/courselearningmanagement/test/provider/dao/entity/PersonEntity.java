@@ -3,7 +3,6 @@ package com.github.jiangxch.courselearningmanagement.test.provider.dao.entity;
 import com.github.jiangxch.courselearningmanagement.provider.entity.common.BaseAliasEntity;
 import lombok.Data;
 import lombok.ToString;
-import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.*;
 
 /**
@@ -20,7 +19,7 @@ import org.mongodb.morphia.annotations.*;
 @ToString(callSuper = true)
 public class PersonEntity extends BaseAliasEntity {
     @Id
-    private ObjectId id;
+    private String id;
 
     private String name;
 

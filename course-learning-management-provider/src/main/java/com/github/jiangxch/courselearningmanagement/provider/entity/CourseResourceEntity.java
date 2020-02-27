@@ -4,7 +4,6 @@ import com.github.jiangxch.courselearningmanagement.provider.entity.common.BaseA
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
-import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
 
@@ -18,7 +17,7 @@ import org.mongodb.morphia.annotations.Id;
 @Entity(value = "course_resource", noClassnameStored = true)
 public class CourseResourceEntity extends BaseAliasEntity {
     @Id
-    private ObjectId id;
+    private String id;
     private String resourceName;
     /**
      * {@link com.github.jiangxch.courselearningmanagement.providerapi.enums.ResourceTypeEnum}
@@ -27,11 +26,11 @@ public class CourseResourceEntity extends BaseAliasEntity {
     // 资源所属学校名称
     private String schoolName;
     // 资源上传者userId
-    private ObjectId userId;
+    private String userId;
     // 资源URL
     private String url;
     // 资源文件后缀名(pdf,word,xls等)
     private String ext;
     // 资源属于哪个课程
-    private ObjectId courseId;
+    private String courseId;
 }

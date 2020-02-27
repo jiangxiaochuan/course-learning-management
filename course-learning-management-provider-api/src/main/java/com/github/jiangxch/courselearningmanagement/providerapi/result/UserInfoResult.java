@@ -1,6 +1,5 @@
 package com.github.jiangxch.courselearningmanagement.providerapi.result;
 
-import com.sun.corba.se.spi.ior.ObjectId;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -11,7 +10,7 @@ import java.io.Serializable;
  */
 @Data
 public class UserInfoResult implements Serializable {
-    private ObjectId id;
+    private String id;
     private String nickname;
     private String profile;
     private String username;

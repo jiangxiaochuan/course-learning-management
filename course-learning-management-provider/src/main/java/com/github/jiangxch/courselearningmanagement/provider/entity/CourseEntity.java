@@ -4,7 +4,6 @@ import com.github.jiangxch.courselearningmanagement.provider.entity.common.BaseA
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
-import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
 
@@ -14,7 +13,7 @@ import org.mongodb.morphia.annotations.Id;
 @Entity(value = "course", noClassnameStored = true)
 public class CourseEntity extends BaseAliasEntity {
     @Id
-    private ObjectId id;
+    private String id;
     // 学校名称
     private String schoolName;
     // 学院名称

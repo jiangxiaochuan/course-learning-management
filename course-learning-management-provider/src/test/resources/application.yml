@@ -1,0 +1,15 @@
+spring:
+  profiles:
+    active: dev
+
+mongo:
+  mongoDbName: course_learning_management
+  host: 139.224.8.162
+  port: 27017
+  username: admin
+  password: 123456789
+
+# 微信小程序配置
+wechat:
+  appId: AKIDiJrpcGV4GG4j7KwJo8HGE4iARmxxCRlu
+  secret: aaaaa
