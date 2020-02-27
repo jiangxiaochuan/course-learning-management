@@ -50,15 +50,7 @@ public class MorphiaConfiguration {
     @Bean
     public Datastore datastore(@Autowired MongoClient mongoClient) throws ClassNotFoundException {
         Morphia morphia = new Morphia();
-        // map entities, there is maybe a better way to find and map all entities
-        ClassPathScanningCandidateComponentProvider entityScanner = new ClassPathScanningCandidateComponentProvider(true);
-        entityScanner.addIncludeFilter(new AnnotationTypeFilter(Entity.class));
-        for (BeanDefinition candidate : entityScanner.findCandidateComponents("com.github.jiangxch.courselearningmanagement.provider.dao")) {
-            morphia.map(Class.forName(candidate.getBeanClassName()));
-        }
-//        morphia.map(PersonEntity.class);
         Datastore datastore = morphia.createDatastore(mongoClient, mongoDbName);
-        datastore.ensureIndexes();
         return datastore;
     }
 }

@@ -3,8 +3,8 @@ package com.github.jiangxch.courselearningmanagement.biz.filter;
 import com.github.jiangxch.courselearningmanagement.biz.common.RequestContext;
 import com.github.jiangxch.courselearningmanagement.biz.common.RequestContextHolder;
 import com.github.jiangxch.courselearningmanagement.common.data.AuthInfo;
-import com.github.jiangxch.courselearningmanagement.biz.utils.JWTUtil;
-import com.github.jiangxch.courselearningmanagement.common.enums.UserRoleTypeEnum;
+import com.github.jiangxch.courselearningmanagement.common.utils.JwtUtil;
+import com.github.jiangxch.courselearningmanagement.providerapi.enums.UserRoleTypeEnum;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.*;
@@ -27,18 +27,18 @@ public class JWTFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest res = (HttpServletRequest) request;
-        String token = res.getHeader(JWTUtil.HEADER);
-        if (token != null && JWTUtil.isJwtValid(token)) {
-            AuthInfo tokenData = JWTUtil.getJwtTokenFromJwt(token);
-            if (tokenData != null) {
+        String token = res.getHeader(JwtUtil.HEADER);
+        if (token != null && JwtUtil.hasTokenValid(token)) {
+            AuthInfo authInfo = JwtUtil.getAuthInfoFromToken(token);
+            if (authInfo != null) {
                 // token合法
-                RequestContext requestContext = new RequestContext(tokenData);
+                RequestContext requestContext = new RequestContext(authInfo);
                 RequestContextHolder.setContext(requestContext);
             }
         }
         if ("admin".equals(token)) {
             AuthInfo tokenData = new AuthInfo()
-                    .setId(1)
+                    .setUserId("1")
                     .setRoleType(UserRoleTypeEnum.SUPER_ADMIN.getType());
             RequestContext requestContext = new RequestContext(tokenData);
             RequestContextHolder.setContext(requestContext);

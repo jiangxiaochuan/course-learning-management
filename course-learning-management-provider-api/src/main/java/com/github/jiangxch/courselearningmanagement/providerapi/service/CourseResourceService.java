@@ -1,4 +1,4 @@
-package com.github.jiangxch.courselearningmanagement.provider.service;
+package com.github.jiangxch.courselearningmanagement.providerapi.service;
 
 
 /**

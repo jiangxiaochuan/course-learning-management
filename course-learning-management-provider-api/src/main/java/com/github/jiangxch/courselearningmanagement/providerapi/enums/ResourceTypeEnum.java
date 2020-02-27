@@ -1,4 +1,4 @@
-package com.github.jiangxch.courselearningmanagement.common.enums;
+package com.github.jiangxch.courselearningmanagement.providerapi.enums;
 
 /**
  * @author: sanjin

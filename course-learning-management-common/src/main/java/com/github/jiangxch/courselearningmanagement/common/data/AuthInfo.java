@@ -1,6 +1,5 @@
 package com.github.jiangxch.courselearningmanagement.common.data;
 
-import com.github.jiangxch.courselearningmanagement.common.enums.UserRoleTypeEnum;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

@@ -1,7 +1,6 @@
-package com.github.jiangxch.courselearningmanagement.biz.utils;
+package com.github.jiangxch.courselearningmanagement.common.utils;
 
 import com.github.jiangxch.courselearningmanagement.common.data.AuthInfo;
-import com.github.jiangxch.courselearningmanagement.common.utils.BeanUtils;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -10,7 +9,7 @@ import lombok.Data;
 import java.util.Date;
 
 @Data
-public class JWTUtil {
+public class JwtUtil {
 
     public static String HEADER = "token";
 
@@ -18,27 +17,27 @@ public class JWTUtil {
 
     public static Integer EXPIRATION=3600000;
 
-    public static String generateJwt(AuthInfo jwtToken) {
+    public static String generateToken(AuthInfo authInfo) {
         Date expirationDate = new Date(System.currentTimeMillis() + EXPIRATION);
         String jwt = Jwts.builder()
-                .setClaims(BeanUtils.entityToMap(jwtToken))
+                .setClaims(BeanUtils.entityToMap(authInfo))
                 .setExpiration(expirationDate)
                 .signWith(SignatureAlgorithm.HS256, SECRET)
                 .compact();
         return jwt;
     }
 
-    public static AuthInfo getJwtTokenFromJwt(String jwt) {
+    public static AuthInfo getAuthInfoFromToken(String token) {
         Claims claims;
         try {
-            claims = Jwts.parser().setSigningKey(SECRET).parseClaimsJws(jwt).getBody();
+            claims = Jwts.parser().setSigningKey(SECRET).parseClaimsJws(token).getBody();
             return BeanUtils.mapToEntity(claims, AuthInfo.class);
         } catch (Exception e) {
             return null;
         }
     }
 
-    public static Boolean isJwtValid(String jwt) {
+    public static Boolean hasTokenValid(String jwt) {
         try {
             Claims claims = Jwts.parser().setSigningKey(SECRET).parseClaimsJws(jwt).getBody();
             Date expiration = claims.getExpiration();

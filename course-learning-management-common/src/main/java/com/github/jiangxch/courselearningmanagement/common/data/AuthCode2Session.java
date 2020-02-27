@@ -1,4 +1,4 @@
-package com.github.jiangxch.courselearningmanagement.biz.data;
+package com.github.jiangxch.courselearningmanagement.common.data;
 
 import lombok.Data;
 

@@ -1,7 +1,10 @@
 package com.github.jiangxch.courselearningmanagement.common.args;
 
-import com.sun.istack.internal.NotNull;
 import lombok.Data;
+import org.hibernate.validator.constraints.Range;
+
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 /**
  * @author: sanjin
@@ -12,11 +15,15 @@ public class PageArg {
     /**
      * 当前页码
      */
+    @NotNull(message = "pageNo不能为空")
+    @Min(value = 1, message = "最小pageNo为 1")
     private Integer pageNo;
 
     /**
      * 每页数量
      */
+    @NotNull(message = "pageSize不能为空")
+    @Range(min = 1,max = 100)
     private Integer pageSize;
 
     /** 排序字段 */
