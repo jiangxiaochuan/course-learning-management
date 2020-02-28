@@ -61,7 +61,6 @@ public class MorphiaConfiguration implements EnvironmentAware {
 
     @Override
     public void setEnvironment(Environment environment) {
-
         String property = environment.getProperty("mongo.host");
         String port = environment.getProperty("mongo.port");
     }

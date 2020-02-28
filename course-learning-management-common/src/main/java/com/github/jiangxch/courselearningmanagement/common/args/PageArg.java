@@ -30,7 +30,7 @@ public class PageArg {
     private String field;
 
     /** 排序顺序(DESC降,ASC) */
-    private Boolean isASC;
+    private Boolean hasASC;
 
     public void validate() {
         if (pageNo == null || pageNo <= 0) {
@@ -38,6 +38,9 @@ public class PageArg {
         }
         if (pageSize == null || pageSize <= 0) {
             pageSize = 5;
+        }
+        if (hasASC == null) {
+            hasASC = true;
         }
     }
 }

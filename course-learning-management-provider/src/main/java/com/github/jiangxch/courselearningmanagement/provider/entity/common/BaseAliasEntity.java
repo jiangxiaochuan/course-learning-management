@@ -1,5 +1,6 @@
 package com.github.jiangxch.courselearningmanagement.provider.entity.common;
 
+import com.github.jiangxch.courselearningmanagement.common.utils.DateUtil;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -25,7 +26,7 @@ public class BaseAliasEntity implements Serializable {
     @PrePersist
     public void timeSetBeforePersist() {
         if (Objects.isNull(updateTime)) {
-            updateTime = createTime = System.currentTimeMillis();
+            updateTime = createTime = DateUtil.getUnix();
         }
     }
 }

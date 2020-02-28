@@ -101,6 +101,9 @@ public class UserServiceImpl implements UserService {
     @Override
     public Result<UserInfoResult> getUserResultById(String userId) {
         UserEntity user = userEntityDao.findOne("id", userId);
+        if (user == null) {
+            return Result.newSuccess();
+        }
         UserInfoResult result = new UserInfoResult();
         BeanUtils.copyProperties(user, result);
         return Result.newSuccess(result);

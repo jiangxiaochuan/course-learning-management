@@ -16,14 +16,15 @@ public class CourseResourceResult implements Serializable {
      * {@link com.github.jiangxch.courselearningmanagement.providerapi.enums.ResourceTypeEnum}
      */
     private Integer resourceType;
+    private String resourceTypeMsg;
     // 资源所属学校名称
     private String schoolName;
     // 资源上传者userId
-    private String userId;
+    private UserInfoResult userInfoResult;
     // 资源URL
     private String url;
     // 资源文件后缀名(pdf,word,xls等)
     private String ext;
     // 资源属于哪个课程
-    private String courseId;
+    private CourseResult courseResult;
 }

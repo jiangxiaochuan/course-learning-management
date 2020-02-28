@@ -2,11 +2,14 @@ package com.github.jiangxch.courselearningmanagement.provider.dao.common;
 
 import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.Key;
+import org.mongodb.morphia.annotations.Id;
 import org.mongodb.morphia.query.Query;
 import org.mongodb.morphia.query.UpdateOperations;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.io.Serializable;
+import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
 import java.util.ArrayList;
 import java.util.List;
@@ -61,6 +64,16 @@ public class BaseDao<T> implements InitializingBean {
         return query.asList();
     }
 
+    public T findByPrimaryKey(Serializable id) {
+        Query<T> query = createQuery();
+        query.field(getPrimaryKeyName()).equal(id);
+        return query.get();
+    }
+
+    public List<T> findAll() {
+        return datastore.find(entityClazz).asList();
+    }
+
     public List<T> find(final Map<String, Object> conditions) {
         Query<T> query = createQuery();
         conditions.forEach((key, value) -> query.field(key).equal(value));
@@ -84,6 +97,27 @@ public class BaseDao<T> implements InitializingBean {
         return result;
     }
 
+    public void deleteByIds(List<? extends Object> ids) {
+        Query<T> query = createQuery();
+        query.field(getPrimaryKeyName()).in(ids);
+        datastore.delete(query);
+    }
+
+    public long countAll() {
+        Query<T> query = datastore.find(entityClazz);
+        return query.count();
+    }
+
+    private String getPrimaryKeyName() {
+        Field[] fields = entityClazz.getDeclaredFields();
+        for (int i = 0; i < fields.length; i++) {
+            Field field = fields[i];
+            if (field.isAnnotationPresent(Id.class)) {
+                return field.getName();
+            }
+        }
+        throw new IllegalStateException("Mongo Entity must exists a @Id field");
+    }
 
     @Override
     public void afterPropertiesSet() throws Exception {

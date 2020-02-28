@@ -33,4 +33,5 @@ public class CourseResourceEntity extends BaseAliasEntity {
     private String ext;
     // 资源属于哪个课程
     private String courseId;
+    private String courseName;
 }
