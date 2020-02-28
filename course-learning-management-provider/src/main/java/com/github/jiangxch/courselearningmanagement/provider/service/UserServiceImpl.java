@@ -15,7 +15,6 @@ import com.github.jiangxch.courselearningmanagement.providerapi.arg.WxLoginArg;
 import com.github.jiangxch.courselearningmanagement.providerapi.result.UserInfoResult;
 import com.github.jiangxch.courselearningmanagement.providerapi.service.UserService;
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;

@@ -11,11 +11,10 @@ import com.github.jiangxch.courselearningmanagement.providerapi.service.CourseRe
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -30,15 +29,16 @@ public class CourseResourceController extends BaseController{
     private CourseResourceService courseResourceService;
 
     @ApiOperation(value = "上传课程资源")
-    @PostMapping("/createCourseResource")
-    public Result<Void> createCourseResource(CreateCourseResourceArg arg) {
+    @PostMapping(value = "/createCourseResource")
+    public Result<Void> createCourseResource(CreateCourseResourceArg arg,
+                                             HttpServletRequest request) {
 
         return courseResourceService.createCourseResource(arg, getUserId());
     }
 
     @ApiOperation(value = "删除课程资源")
     @PostMapping("/deleteByIds")
-    public Result<Void> deleteByIds(List<String> ids) {
+    public Result<Void> deleteByIds(@RequestBody List<String> ids) {
 
         return courseResourceService.deleteByIds(ids);
     }

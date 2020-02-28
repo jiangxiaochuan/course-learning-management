@@ -11,6 +11,7 @@ import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -30,13 +31,13 @@ public class CourseController extends BaseController{
 
     @ApiOperation(value = "创建课程")
     @PostMapping("/createCourse")
-    public Result<Void> createCourse(CreateCourseArg arg) {
+    public Result<Void> createCourse(@RequestBody  CreateCourseArg arg) {
         return courseService.createCourse(arg);
     }
 
     @ApiOperation(value = "删除课程")
     @PostMapping("/deleteByIds")
-    public Result<Void> deleteByIds(List<String> ids) {
+    public Result<Void> deleteByIds(@RequestBody List<String> ids) {
         return courseService.deleteByIds(ids);
     }
 

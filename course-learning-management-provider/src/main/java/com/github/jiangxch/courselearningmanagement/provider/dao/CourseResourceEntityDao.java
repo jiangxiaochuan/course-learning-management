@@ -42,12 +42,14 @@ public class CourseResourceEntityDao extends BaseDao<CourseResourceEntity> {
                     query.criteria("schoolName").containsIgnoreCase(keyword)
             );
         }
-
-        if (searchArg.getHasASC()) {
-            query.order(searchArg.getField());
-        } else {
-            query.order("-" + searchArg.getField());
+        if (!StringUtils.isBlank(searchArg.getField())) {
+            if (searchArg.getHasASC()) {
+                query.order(searchArg.getField());
+            } else {
+                query.order("-" + searchArg.getField());
+            }
         }
+
         pageResult.setRows(query.asList());
 
         return pageResult;

@@ -1,6 +1,5 @@
 package com.github.jiangxch.courselearningmanagement.provider.service;
 
-import com.github.jiangxch.courselearningmanagement.common.exception.MyException;
 import com.github.jiangxch.courselearningmanagement.common.result.Result;
 import com.github.jiangxch.courselearningmanagement.common.utils.JsonUtil;
 import com.github.jiangxch.courselearningmanagement.providerapi.service.SystemService;
@@ -12,7 +11,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.FileCopyUtils;
 
 import java.io.*;
-import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 

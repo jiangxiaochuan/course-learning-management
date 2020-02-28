@@ -10,6 +10,7 @@ import com.github.jiangxch.courselearningmanagement.providerapi.result.CourseRes
 import com.github.jiangxch.courselearningmanagement.providerapi.service.CourseService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 import org.w3c.dom.Entity;
 
@@ -21,6 +22,7 @@ import java.util.stream.Collectors;
  * @author: sanjin
  * @date: 2020/2/27 下午11:42
  */
+@Service
 public class CourseServiceImpl implements CourseService {
     @Autowired
     private CourseEntityDao courseEntityDao;

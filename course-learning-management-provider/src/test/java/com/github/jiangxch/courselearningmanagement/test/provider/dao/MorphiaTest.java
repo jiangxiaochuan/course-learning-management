@@ -5,6 +5,7 @@ import com.github.jiangxch.courselearningmanagement.provider.dao.UserEntityDao;
 import com.github.jiangxch.courselearningmanagement.provider.entity.UserEntity;
 import com.github.jiangxch.courselearningmanagement.test.provider.dao.entity.PersonEntity;
 import com.github.jiangxch.courselearningmanagement.test.provider.BaseTest;
+import com.google.common.collect.Lists;
 import org.junit.Assert;
 import org.junit.Test;
 import org.mongodb.morphia.Datastore;
@@ -102,6 +103,8 @@ public class MorphiaTest extends BaseTest {
 
     @Test
     public void insertOne() {
+        userEntityDao.deleteByIds(Lists.newArrayList("1"));
+
         UserEntity user = userEntityDao.findOne("id", "1");
         if (user == null) {
             UserEntity userEntity = new UserEntity();
@@ -117,5 +120,6 @@ public class MorphiaTest extends BaseTest {
             userEntityDao.save(userEntity);
         }
     }
+
 
 }

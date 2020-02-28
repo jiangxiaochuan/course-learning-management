@@ -55,4 +55,5 @@ public class GlobalExceptionController {
         return Result.newResult(ResultEnum.SYSTEM_ERROR, ResultEnum.SYSTEM_ERROR.getErrMsg() + ":" + e.getMessage());
     }
 
+
 }

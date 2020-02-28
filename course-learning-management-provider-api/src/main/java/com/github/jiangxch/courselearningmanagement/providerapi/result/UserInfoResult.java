@@ -15,6 +15,6 @@ public class UserInfoResult implements Serializable {
     private String profile;
     private String username;
     private Integer roleType;
-    private Long ct;
-    private Long ut;
+    private Long createTime;
+    private Long updateTime;
 }

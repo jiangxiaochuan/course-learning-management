@@ -19,6 +19,7 @@ import com.github.jiangxch.courselearningmanagement.providerapi.service.CourseSe
 import com.github.jiangxch.courselearningmanagement.providerapi.service.UserService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;
@@ -28,10 +29,11 @@ import java.util.List;
  * @author: sanjin
  * @date: 2020/2/28 上午12:12
  */
+@Service
 public class CourseResourceServiceImpl implements CourseResourceService {
     @Autowired
     private CourseResourceEntityDao courseResourceEntityDao;
-    @Autowired
+    @Autowired(required = false)
     private Oos oos;
     @Autowired
     private UserService userService;
