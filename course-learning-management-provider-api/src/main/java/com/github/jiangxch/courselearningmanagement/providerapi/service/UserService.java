@@ -11,11 +11,11 @@ import com.github.jiangxch.courselearningmanagement.providerapi.result.UserInfoR
  * @date: 2020/2/27 下午12:40
  */
 public interface UserService {
-    Result<UserInfoResult> wxLogin(WxLoginArg arg);
+    Result<String> wxLogin(WxLoginArg arg);
 
     Result<String> generateToken(UserInfoResult data);
 
-    Result<UserInfoResult> adminLogin(WebLoginArg arg);
+    Result<String> adminLogin(WebLoginArg arg);
 
     Result<Void> adminRegisterOrUpdateArg(AdminRegisterOrUpdateArg arg, String userId);
 

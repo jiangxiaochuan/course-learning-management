@@ -35,7 +35,7 @@ public class UserServiceImpl implements UserService {
     private UserEntityDao userEntityDao;
 
     @Override
-    public Result<UserInfoResult> wxLogin(WxLoginArg wxLoginArg) {
+    public Result<String> wxLogin(WxLoginArg wxLoginArg) {
         // 小程序登陆
         // auth.code2Session 地址
         String url = String.format(
@@ -55,7 +55,6 @@ public class UserServiceImpl implements UserService {
         }
         // 根据  openid 判断该用户是否存在
         UserEntity userEntity = userEntityDao.findOne("openId", authCode2Session.getOpenid());
-        String jwtToken = "";
 
         if (userEntity == null) {
             // 用户不存在，进行保存
@@ -68,7 +67,8 @@ public class UserServiceImpl implements UserService {
         }
         UserInfoResult result = new UserInfoResult();
         BeanUtils.copyProperties(userEntity, result);
-        return Result.newSuccess(result);
+
+        return generateToken(result);
     }
 
     @Override
@@ -81,11 +81,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Result<UserInfoResult> adminLogin(WebLoginArg arg) {
+    public Result<String> adminLogin(WebLoginArg arg) {
         UserEntity user = userEntityDao.getByUsernamePassword(arg.getUsername(), arg.getPassword());
         UserInfoResult result = new UserInfoResult();
         BeanUtils.copyProperties(user, result);
-        return Result.newSuccess(result);
+        return generateToken(result);
     }
 
     @Override

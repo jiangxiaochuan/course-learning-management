@@ -12,6 +12,7 @@ import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -33,39 +34,32 @@ public class AuthenticateController extends BaseController {
 
     @ApiOperation(value = "小程序登陆注册接口")
     @PostMapping("/wxLogin")
-    public Result<UserInfoResult> wxLogin(@Valid WxLoginArg arg,
-                                          HttpServletResponse response) {
-        Result<UserInfoResult> userInfoResult = userService.wxLogin(arg);
-        setToken(response, userInfoResult.getData());
-        return userInfoResult;
+    public Result<String> wxLogin(@RequestBody @Valid WxLoginArg arg) {
+        return userService.wxLogin(arg);
     }
 
     @ApiOperation(value = "web登录接口")
     @PostMapping("/adminLogin")
-    public Result<UserInfoResult> adminLogin(WebLoginArg arg, HttpServletResponse response) {
-        Result<UserInfoResult> userInfoResult = userService.adminLogin(arg);
-        setToken(response, userInfoResult.getData());
-        return Result.newSuccess();
+    public Result<String> adminLogin(@RequestBody @Valid WebLoginArg arg) {
+        return userService.adminLogin(arg);
     }
 
     @ApiOperation(value = "web注册(或修改)接口")
     @PostMapping("/adminRegisterOrUpdate")
-    public Result<Void> adminRegisterOrUpdateArg(AdminRegisterOrUpdateArg arg) {
+    public Result<Void> adminRegisterOrUpdateArg(@RequestBody @Valid AdminRegisterOrUpdateArg arg) {
         return userService.adminRegisterOrUpdateArg(arg, getUserId());
     }
 
     @ApiOperation(value = "刷新token")
     @PostMapping("/refreshToken")
-    public Result<Void> refreshToken(HttpServletResponse response) {
-
+    public Result<String> refreshToken(HttpServletResponse response) {
         Result<UserInfoResult> userInfoResult = userService.getUserResultById(getUserId());
-        setToken(response,userInfoResult.getData());
-        return Result.newSuccess();
+        return userService.generateToken(userInfoResult.getData());
     }
 
-    private void setToken(HttpServletResponse response, UserInfoResult userInfoResult) {
-        Result<String> tokenResult = userService.generateToken(userInfoResult);
-        String tokenData = tokenResult.getData();
-        response.setHeader(JwtUtil.HEADER, tokenData);
+    @ApiOperation(value = "获取用户信息")
+    @PostMapping("/getUserInfo")
+    public Result<UserInfoResult> getUserInfo() {
+        return userService.getUserResultById(getUserId());
     }
 }
