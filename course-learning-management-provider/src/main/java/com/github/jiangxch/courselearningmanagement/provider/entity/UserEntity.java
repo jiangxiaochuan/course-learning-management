@@ -23,4 +23,6 @@ public class UserEntity extends BaseAliasEntity {
      * {@link com.github.jiangxch.courselearningmanagement.providerapi.enums.UserRoleTypeEnum}
      */
     private Integer roleType;
+
+    private String attach;
 }

@@ -7,9 +7,9 @@ import lombok.Getter;
  * @date: 2020/2/26 下午1:39
  */
 public enum ResourceTypeEnum {
-    SUPER_ADMIN(1, "PPT讲义"),
-    ADMIN(2, "Word期末试卷"),
-    USER(3, "Word课后答案")
+    HANDOUT(1, "讲义"),
+    FINAL_EXAM_PAPER(2, "期末试卷"),
+    ANSWERS_TO_EXERCISES(3, "课后答案")
     ;
 
     @Getter
