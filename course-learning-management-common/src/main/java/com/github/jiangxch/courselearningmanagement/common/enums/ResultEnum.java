@@ -14,6 +14,7 @@ public enum ResultEnum {
     SQL_UNIQUE_ERROR(3, "数据库已有重复值"),
     REMOTE_ERROR(4, "远程调用失败"),
     AUTHENTICATION_ERROR(5, "您还未登录"),
+    PERMISSION_ERROR(5, "权限不允许"),
     USER_NOT_EXIST(6, "用户不存在"),
     NO_CAMPUS_CERTIFICATION(7, "未进行校园认证"),
     FILE_UPLOAD_FAILED(8, "当前文件上传失败,请重新上传"),

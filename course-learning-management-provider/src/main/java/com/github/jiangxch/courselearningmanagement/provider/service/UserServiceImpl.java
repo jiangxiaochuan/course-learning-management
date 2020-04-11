@@ -19,6 +19,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 /**
  * @author: sanjin
@@ -106,5 +109,17 @@ public class UserServiceImpl implements UserService {
         UserInfoResult result = new UserInfoResult();
         BeanUtils.copyProperties(user, result);
         return Result.newSuccess(result);
+    }
+
+    @Override
+    public Result<List<UserInfoResult>> listUsers() {
+        List<UserEntity> all = userEntityDao.findAll();
+        List<UserInfoResult> results = new ArrayList<>(all.size());
+        for (int i = 0; i < all.size(); i++) {
+            UserInfoResult userInfoResult = new UserInfoResult();
+            BeanUtils.copyProperties(all.get(i), userInfoResult);
+            results.add(userInfoResult);
+        }
+        return Result.newSuccess(results);
     }
 }

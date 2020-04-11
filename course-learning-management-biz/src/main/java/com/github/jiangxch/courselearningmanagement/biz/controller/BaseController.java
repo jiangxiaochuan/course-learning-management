@@ -5,6 +5,7 @@ import com.github.jiangxch.courselearningmanagement.biz.common.RequestContextHol
 import com.github.jiangxch.courselearningmanagement.common.data.AuthInfo;
 import com.github.jiangxch.courselearningmanagement.common.enums.ResultEnum;
 import com.github.jiangxch.courselearningmanagement.common.exception.MyException;
+import com.github.jiangxch.courselearningmanagement.providerapi.enums.UserRoleTypeEnum;
 
 /**
  * @author: sanjin
@@ -30,5 +31,11 @@ public class BaseController {
 
     protected Integer getRoleType() {
         return getAuthInfo().getRoleType();
+    }
+
+    protected void checkPermission(UserRoleTypeEnum userRoleTypeEnum) {
+        if (!this.getRoleType().equals(userRoleTypeEnum.getType())) {
+            throw new MyException(ResultEnum.AUTHENTICATION_ERROR);
+        }
     }
 }

@@ -1,11 +1,14 @@
 package com.github.jiangxch.courselearningmanagement.biz.controller;
 
 import com.github.jiangxch.courselearningmanagement.common.result.Result;
+import com.github.jiangxch.courselearningmanagement.common.result.Void;
+import com.github.jiangxch.courselearningmanagement.common.utils.JsonUtil;
 import com.github.jiangxch.courselearningmanagement.providerapi.service.SystemService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,6 +29,12 @@ public class SystemController extends BaseController{
     @PostMapping("/listChinaUniversityNames")
     public Result<List<String>> listChinaUniversityNames() {
         return systemService.listChinaUniversityNames();
+    }
+
+    @ApiOperation(value = "微信小程序灰度控制")
+    @PostMapping("/wechatGray")
+    public Result<Object> wechatGray(@RequestBody String configJson) {
+        return Result.newSuccess(JsonUtil.jsonToPojo(configJson,Object.class));
     }
 
 }
